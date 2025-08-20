@@ -1,24 +1,14 @@
-# Seoul Trip App
+# Seoul Trip App (updated)
 
-A mobile-friendly React app for your Seoul itinerary. Built with Vite + Tailwind.
+Vite + React + Tailwind. Open-source build with itinerary + flights + docs.
 
 ## Local dev
-
-```bash
 npm install
 npm run dev
-```
 
 ## Build
-
-```bash
 npm run build
 npm run preview
-```
 
 ## Deploy on Vercel
-
-1. Push this folder to a GitHub repository.
-2. In Vercel, **Add New… → Project → Import Git Repository**.
-3. Framework preset: **Vite**. Build command: `vite build` (default). Output dir: `dist` (default).
-4. Deploy.
+Connect the repo and deploy. Framework: Vite (auto). Build: vite build. Output: dist.

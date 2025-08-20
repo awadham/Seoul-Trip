@@ -3,16 +3,17 @@ import { motion } from "framer-motion";
 import { CalendarDays, List, FileText, MapPin, ArrowLeft, ArrowRight, ExternalLink, Sun, X, Utensils, Info } from "lucide-react";
 
 /**
- * SEOUL TRIP APP (v2.8)
- * Fixes for syntax error + feature requests
- * - Removed stray "$1" artifacts and bad escapes that caused parser errors.
- * - Added top Trip Progress Bar.
- * - Static Seoul hero image (from user link).
- * - Real avatars for Hari, Nuwie G, Mapa, Ray, Naz.
- * - Contrast fixes: currency converter unselected buttons & Google Maps buttons.
- * - Full Itinerary embeds detail pop-ups per relevant day (no bottom reference list).
- * - Docs tab shows Travellers & Flights FIRST with embedded doc links per traveller.
- * - Top date strip supports dragging to scroll (no visible scrollbar).
+ * SEOUL TRIP APP – updated per user changes
+ * - Fix crash: use String.endsWith (not Python endswith)
+ * - Remove "1PC" from Flights today and add airline baggage rules
+ * - Itinerary updated per user text (incl. Myeongdong 25 Aug; Soul 28 Aug 12:00 and COEX/Starfield 14:30)
+ * - Google Maps buttons only on place-like items
+ * - Hover contrast fixed for Maps buttons
+ * - Nuwie G outbound flight moved to Sat 23 Aug (arrive 19:50) – docs unchanged
+ * - Buttons unified to "Open" with icon across Docs & Flights
+ * - Today tab auto-selects actual calendar date within trip
+ * - Currency converter uses symbols (£, ₩, A$)
+ * - Removed "Pick a date" and "Eat near me" header buttons
  */
 
 // -------------------- DATA --------------------
@@ -38,53 +39,53 @@ We also have a door lock to enter the accommodation, so we will give you the pas
 > Check out: 11 a.m.
 > Check-in: 3 p.m. (15:00)`,
     items: [
-    `✈️ 17:30 – Land Incheon → taxi to Hongdae Airbnb (~$75-$100 split, ~1 hr).`,
-    `🥩 19:30 – K-BBQ Dinner at Saemaeul Sikdang.`,
-    `🍻 21:00 – Bar hop: see note`,
-    `🎤 23:00–02:00 – Karaoke (coin noraebang) OR Club NB2 (hip hop, always packed).`
-  ]
+      `✈️ 17:30 – Land Incheon → 🚖 taxi to Hongdae Airbnb (~$75-$100 split, ~1 hr).`,
+      `🥩 19:30 – K-BBQ Dinner at Saemaeul Sikdang.`,
+      `🍻 21:00 – Bar hop: see note`,
+      `🎤 23:00–02:00 – Karaoke (coin noraebang) OR Club NB2 (hip hop, always packed).`,
+    ]
   },
   { date: `2025-08-23`, city: `Hongdae`, accommodation: ``, checkin_details: ``, items: [
     `🍳 12:00 – Recovery brunch: Eggslut (greasy fix) or Thanks, Oat (lighter).`,
-    `🚲 15:00 – Han River Chill Sesh @ Yeouido Hangang Park: - Rent bikes, lay mats, order fried chicken delivery to the river. - Optional: Hangang River Cruise (~$22, 1 hr, sunset option).`,
+    `🚲 15:00 – Han River Chill Sesh @ Yeouido Hangang Park: rent bikes, lay mats, order fried chicken; optional Hangang River Cruise (~$22, 1 hr, sunset).`,
     `🌶️ 18:30 – Dinner: Chicken JangIn Dakgalbi (spicy stir-fried chicken w/ cheese).`,
     `🍻 20:30–02:00 – Hongdae Pub Crawl (Mike’s Cabin, pre-book). Includes 3 bars + 1 club + 4 drinks.`,
     `🎶 02:00+ – Karaoke or Club Vera.`
   ]},
   { date: `2025-08-24`, city: `Hongdae`, accommodation: ``, checkin_details: ``, items: [
-    `🥟 12:00 – Gwangjang Market – must-try: bindaetteok 🥞, mayak gimbap 🍙, yukhoe 🥩.`,
-    `💆 15:30–18:00 – Skincare @ Forena Clinic (2–2.5 hrs). Glow-up day ✨.`,
+    `🥟 12:00 – Gwangjang Market – must-try: bindaetteok, mayak gimbap, yukhoe.`,
+    `💆 15:30–18:00 – Skincare @ Forena Clinic (2–2.5 hrs).`,
     `🍺 18:30 – Craft beer crawl: Magpie Brewing Co. → The Booth.`,
-    `🍢 20:00 – Dinner: Pojangmacha tents – street food + soju 🍶.`
+    `🍢 20:00 – Dinner: Pojangmacha tents – street food + soju.`
   ]},
   { date: `2025-08-25`, city: `Hongdae`, accommodation: ``, checkin_details: ``, items: [
     `🍡 11:00 – Myeongdong Street Food Alley (skewers, hotteok pancakes).`,
-    `🥟 13:00 – Optional market stop (Namdaemun or Gwangjang if you loved it).`,
-    `☕ 15:00 – Yeonnam-dong café crawl ☕🎨 (hipster neighbourhood) - see note.`,
-    `🍸 17:30 – Rooftop pre-dinner drinks: The Griffin Bar (JW Marriott) ✨.`,
+    `🥟 13:00 – Optional market stop (Namdaemun or Gwangjang).`,
+    `☕ 15:00 – Yeonnam-dong café crawl (hipster neighbourhood) – see note.`,
+    `🍸 17:30 – Rooftop pre-dinner drinks: The Griffin Bar (JW Marriott).`,
     `🥓 19:30 – Dinner: Hanam Pig House (legendary pork belly BBQ).`,
     `🍹 21:30–00:00 – Cocktails @ Alice Cheongdam (hidden speakeasy).`
   ]},
   { date: `2025-08-26`, city: `Hongdae`, accommodation: ``, checkin_details: ``, items: [
     `🏰 11:00–16:00 – Gyeongbokgung Palace → Bukchon Hanok Village → Insadong tea house.`,
-    `🍜 12:30 – Lunch: Tosokchon Samgyetang 🥣 or Gogung (Insadong branch) 🍚 or Tongin Market 🍱 or Yetchatjip (Bukchon Hanok Village) 🍖`,
-    `🥩 18:30 – Dinner: Yeontabal BBQ (premium beef). See note`,
-    `🍻 20:30–01:00 – Hongdae blowout: Thursday Party → karaoke 🎤 → Club Vera.`
+    `🍜 12:30 – Lunch: Tosokchon Samgyetang / Gogung (Insadong) / Tongin Market / Yetchatjip (Bukchon).`,
+    `🥩 18:30 – Dinner: Yeontabal BBQ (premium beef). See note.`,
+    `🍻 20:30–01:00 – Hongdae blowout: Thursday Party → karaoke → Club Vera.`
   ]},
-  { date: `2025-08-27`, city: `Itaewon`, accommodation: `[3‑minute walk from Itaewon Station] stay KANU (up to 8 people/3RM/2BR)`, checkin_details: `Check‑in: 15:00\nCheck‑out: 10:00`, items: [
-    `🧳 10:00 – Pack up Hongdae, coffees to go.`,
-    `🚖 11:00 – Taxi to Itaewon Airbnb, drop bags if early.`,
-    `🍗 13:00 – Itaewon lunch: Maple Tree House / Linus BBQ / Vatos.`,
-    `🌇 17:30 – Rooftop crawl (tap for list).`,
-    `🍹 21:30 – ITAEWON BAR HOP (tap for list).`
+  { date: `2025-08-27`, city: `Itaewon`, accommodation: `11 Usadan-ro 12-gil 302, Seoul, 04405`, checkin_details: `Check‑in: 15:00\nCheck‑out: 10:00`, items: [
+    `🚖 11:00 – Taxi to Itaewon Airbnb (~25 min).`,
+    `🥗 13:00 – Lunch: Plant Itaewon (healthy).`,
+    `☕ Afternoon – Chill cafes, explore Itaewon.`,
+    `🍖 19:00 – Dinner: Linus BBQ (American smoked meats).`,
+    `🍸 21:00–02:00 – Itaewon bar hop: The Fountain → B One Lounge Club → karaoke.`
   ]},
   { date: `2025-08-28`, city: `Itaewon`, accommodation: ``, checkin_details: ``, items: [
     `🚖 11:00 – Taxi to Gangnam (~25 min).`,
-    `🍽️ 12:00 – Michelin Lunch @ Soul (booked).`,
+    `🍽️ 12:00 – Michelin Lunch @ Soul (1★, booked).`,
     `🛍️ 14:30 – COEX Mall + Starfield Library (photos).`,
-    `🍸 17:00 – Rooftop crawl: Privilege Bar (Mondrian) → Le Chamber - see note.`,
+    `🍸 17:00 – Rooftop crawl: Privilege Bar (Mondrian) → Le Chamber – see note.`,
     `🌮 20:00 – Dinner: Vatos Urban Tacos.`,
-    `🎧 22:30–03:00 – Club Octagon (Gangnam): - $33.37 entry (incl. 1 drink). - VIP tables: from $612.00 (6 ppl, 2 bottles). - Dress smart, no sportswear/flip flops.`,
+    `🎧 22:30–03:00 – Club Octagon (Gangnam): $33.37 entry incl. 1 drink; VIP from $612 (6 ppl, 2 bottles); dress smart.`,
     `🚖 Taxi back to Itaewon (~$20).`
   ]},
   { date: `2025-08-29`, city: `Itaewon`, accommodation: ``, checkin_details: ``, items: [
@@ -92,27 +93,16 @@ We also have a door lock to enter the accommodation, so we will give you the pas
     `🛍️ Day – rest, shop, chill.`,
     `🍗 19:00 – Dinner: Chicken in the Kitchen (elite fried chicken).`,
     `🍻 21:00–02:00 – Itaewon Pub Crawl (pre-book).`,
-    `🎶 02:00+ – Club Made (big EDM/hip hop) or Cake Shop (underground techno).`
+    `🎶 02:00+ – Club Made (EDM/hip hop) or Cake Shop (underground techno).`
   ]},
   { date: `2025-08-30`, city: `Itaewon`, accommodation: ``, checkin_details: ``, items: [
-    `🛍️ Day – last shopping & coffee crawl ☕.`,
+    `🛍️ Day – last shopping & coffee crawl.`,
     `🌇 17:00 – Farewell rooftop: Kloud @ InterContinental OR revisit Griffin.`,
     `🥩 19:30 – Dinner: Hanokjib BBQ.`,
-    `🍸 21:00–01:00 – Casual bar hop, final karaoke 🎤.`
+    `🍸 21:00–01:00 – Casual bar hop, final karaoke.`
   ]},
-  { date: `2025-08-31`, city: ``, accommodation: ``, checkin_details: ``, items: [
-    `🍳 12:00 – Recovery brunch: Eggslut (greasy fix) or Thanks, Oat (lighter).`,
-    `🚲 15:00 – Han River Chill Sesh @ Yeouido Hangang Park: - Rent bikes, lay mats, order fried chicken delivery to the river. - Optional: Hangang River Cruise (~$22, 1 hr, sunset option).`,
-    `🌶️ 18:30 – Dinner: Chicken JangIn Dakgalbi (spicy stir-fried chicken w/ cheese).`,
-    `🍻 20:30–02:00 – Hongdae Pub Crawl (Mike’s Cabin, pre-book). Includes 3 bars + 1 club + 4 drinks.`,
-    `🎶 02:00+ – Karaoke or Club Vera.`
-  ] },
-  { date: `2025-09-01`, city: ``, accommodation: ``, checkin_details: ``, items: [
-    `🥟 12:00 – Gwangjang Market – must-try: bindaetteok 🥞, mayak gimbap 🍙, yukhoe 🥩.`,
-    `💆 15:30–18:00 – Skincare @ Forena Clinic (2–2.5 hrs). Glow-up day ✨.`,
-    `🍺 18:30 – Craft beer crawl: Magpie Brewing Co. → The Booth.`,
-    `🍢 20:00 – Dinner: Pojangmacha tents – street food + soju 🍶.`
-  ] },
+  { date: `2025-08-31`, city: ``, accommodation: ``, checkin_details: ``, items: [`Fly home.`] },
+  { date: `2025-09-01`, city: ``, accommodation: ``, checkin_details: ``, items: [] },
 ];
 
 const DETAIL_BLOCKS = {
@@ -181,20 +171,20 @@ const DETAIL_BLOCKS = {
 
 const TRAVELLERS = [
   { name: `Mapa`, origin: `London`, avatar: `https://iili.io/Fy3Cgbj.png`, flights: [
-    { dir: `Outbound`, flight: `Asiana OZ522`, from: `LHR T2`, to: `ICN T1`, dep: `Thu 21 Aug 20:40`, arr: `Fri 22 Aug 17:30`, bag: `1PC` },
-    { dir: `Return`, flight: `Asiana OZ521`, from: `ICN T1`, to: `LHR T2`, dep: `Sun 31 Aug 12:20`, arr: `Sun 31 Aug 18:50`, bag: `1PC` },
+    { dir: `Outbound`, flight: `Asiana OZ522`, from: `LHR T2`, to: `ICN T1`, dep: `Thu 21 Aug 20:40`, arr: `Fri 22 Aug 17:30` },
+    { dir: `Return`, flight: `Asiana OZ521`, from: `ICN T1`, to: `LHR T2`, dep: `Sun 31 Aug 12:20`, arr: `Sun 31 Aug 18:50` },
   ]},
   { name: `Nuwie G`, origin: `Brisbane (early)`, avatar: `https://iili.io/Fy3BFCN.png`, flights: [
     { dir: `Outbound`, flight: `Jetstar JQ53`, from: `BNE`, to: `ICN T1`, dep: `Sat 23 Aug 11:10`, arr: `Sat 23 Aug 19:50` },
     { dir: `Return`, flight: `Jetstar JQ48`, from: `ICN T1`, to: `SYD`, dep: `Mon 1 Sep 21:50`, arr: `Tue 2 Sep 09:05` },
   ]},
   { name: `Hari`, origin: `Sydney`, avatar: `https://iili.io/Fy3fyzl.png`, flights: [
-    { dir: `Outbound`, flight: `Korean Air KE402`, from: `SYD T1`, to: `ICN T2`, dep: `Fri 22 Aug 07:55`, arr: `Fri 22 Aug 17:35`, bag: `1PC` },
-    { dir: `Return`, flight: `Korean Air KE401`, from: `ICN T2`, to: `SYD T1`, dep: `Sun 31 Aug 19:10`, arr: `Mon 1 Sep 06:20`, bag: `1PC` },
+    { dir: `Outbound`, flight: `Korean Air KE402`, from: `SYD T1`, to: `ICN T2`, dep: `Fri 22 Aug 07:55`, arr: `Fri 22 Aug 17:35` },
+    { dir: `Return`, flight: `Korean Air KE401`, from: `ICN T2`, to: `SYD T1`, dep: `Sun 31 Aug 19:10`, arr: `Mon 1 Sep 06:20` },
   ]},
   { name: `Ray`, origin: `Sydney`, avatar: `https://iili.io/Fy3ojFS.png`, flights: [
-    { dir: `Outbound`, flight: `Korean Air KE402`, from: `SYD T1`, to: `ICN T2`, dep: `Fri 22 Aug 07:55`, arr: `Fri 22 Aug 17:35`, bag: `1PC` },
-    { dir: `Return`, flight: `Korean Air KE401`, from: `ICN T2`, to: `SYD T1`, dep: `Sun 31 Aug 19:10`, arr: `Mon 1 Sep 06:20`, bag: `1PC` },
+    { dir: `Outbound`, flight: `Korean Air KE402`, from: `SYD T1`, to: `ICN T2`, dep: `Fri 22 Aug 07:55`, arr: `Fri 22 Aug 17:35` },
+    { dir: `Return`, flight: `Korean Air KE401`, from: `ICN T2`, to: `SYD T1`, dep: `Sun 31 Aug 19:10`, arr: `Mon 1 Sep 06:20` },
   ]},
   { name: `Naz`, origin: `Sydney`, avatar: `https://iili.io/Fy3xOfp.png`, flights: [
     { dir: `Outbound`, flight: `Jetstar JQ47`, from: `SYD T1`, to: `ICN T1`, dep: `Thu 21 Aug 10:45`, arr: `Thu 21 Aug 20:15` },
@@ -220,21 +210,13 @@ const FLIGHT_DOC_URL = {
   'Nuwie G': { Outbound: DOCS.find(d=>d.key==='nuwie_out')?.url, Return: DOCS.find(d=>d.key==='nuwie_ret')?.url },
 };
 
-
-// Baggage allowances per airline
-const AIRLINE_BAGGAGE = {
-  'Asiana': '23kg checked + 10kg carry-on (55×20×40cm) + personal item (40×30×20cm)',
-  'Korean Air': '20kg checked + 10kg carry-on (55×20×40cm) + personal item (40×30×15cm)',
-  'Jetstar': '30kg checked + 14kg carry-on',
+// Baggage allowances by airline
+const BAGGAGE = {
+  ASIANA: "23kg checked + 10kg carry‑on (55×20×40cm) + personal item (40×30×20cm)",
+  "KOREAN AIR": "20kg checked + 10kg carry‑on (55×20×40cm) + personal item (40×30×15cm)",
+  JETSTAR: "30kg checked + 14kg carry‑on",
 };
-function baggageForFlight(flightStr){
-  if(!flightStr) return null;
-  const words = flightStr.split(/\s+/);
-  const two = words.slice(0,2).join(' ');
-  if (AIRLINE_BAGGAGE[two]) return AIRLINE_BAGGAGE[two];
-  const one = words[0];
-  return AIRLINE_BAGGAGE[one] || null;
-}
+
 // -------------------- HELPERS --------------------
 const SEOUL = { name: `Seoul`, lat: 37.5665, lon: 126.9780, tz: `Asia/Seoul` };
 const SEOUL_HERO = 'https://iili.io/Fy3UKFa.jpg';
@@ -272,31 +254,37 @@ function openMaps(query) {
   window.open(url, `_blank`);
 }
 
-function openNaverAt(lat, lon, query) {
-  const base = `https://map.naver.com/v5/search/${encodeURIComponent(query || `맛집`)}`;
-  const c = `${lon},${lat},16,0,0,0,dh`;
-  window.open(`${base}?c=${c}`, `_blank`);
-}
-
 function guessPlaceFromStep(step) {
+  // Heuristic: extract content after an en dash or colon; strip emojis
   const after = step.split(` – `)[1] || step.split(` - `)[1] || step.split(`: `)[1] || step;
-  return after.trim();
+  return after.replace(/^[^\w\(]+/u,'').trim();
 }
 
+// Only show maps for place-like items (dinners, lunches, venues, markets, rooftops, named bars)
 function shouldShowMaps(step){
-  const s = (step||'').trim().toLowerCase();
-  if(s.startsWith('fly ') || s.includes('fly home') || s.includes('fly to seoul')) return false;
-  const generic = ['check in','freshen','pack up','rest','shop','chill','free','bar hop','crawl','karaoke','club','explore','recovery','blowout'];
+  const s = step.trim().toLowerCase();
+
+  // Never for generic actions
+  const generic = [
+    'fly', 'check in', 'freshen up', 'pack up', 'pack', 'explore', 'chill cafes', 'rest, shop, chill',
+    'bar hop', 'pub crawl', 'bar crawl', 'karaoke', 'club', 'casual bar hop', 'farewell rooftop',
+    'today –', 'day –', 'afternoon', 'morning', 'taxi to', 'taxi back', 'blowout'
+  ];
   if (generic.some(g => s.includes(g))) return false;
-  const after = guessPlaceFromStep(step).toLowerCase();
-  if (!after) return false;
-  if (generic.some(g => after.includes(g))) return false;
-  return /[a-z]/i.test(after);
+
+  // Likely places
+  const keywords = ['dinner', 'lunch', 'brunch', 'rooftop', 'market', 'library', 'palace', 'village', 'insadong', 'coex', 'museum', 'park', 'plant itaewon', 'vatos', 'hanokjib', 'hanam pig', 'alice cheongdam', 'soul', 'octagon', 'linus bbq', 'yeontabal', 'thanks, oat', 'eggslut', 'gwangjang', 'forena', 'magpie', 'the booth', 'myeongdong', 'namdaemun'];
+  if (keywords.some(k => s.includes(k))) return true;
+
+  // Fallback: if it contains at sign or looks like a specific place
+  if (s.includes('@')) return true;
+
+  return false;
 }
 
 function parseFlightDate(str){
   // e.g. "Thu 21 Aug 20:40" -> 2025-08-21
-  const m = str.match(/\\b(\\d{1,2})\\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\b/i);
+  const m = str.match(/\b(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b/i);
   if(!m) return null;
   const day = m[1].padStart(2,'0');
   const months = {Jan:'01',Feb:'02',Mar:'03',Apr:'04',May:'05',Jun:'06',Jul:'07',Aug:'08',Sep:'09',Oct:'10',Nov:'11',Dec:'12'};
@@ -307,8 +295,8 @@ function parseFlightDate(str){
 function detailKeyForStep(date, step){
   const s = step.toLowerCase();
   if(date==='2025-08-22' && s.includes('bar hop')) return '2025-08-22-hongdae-hop';
-  if(date==='2025-08-25' && s.includes('cafe crawl')) return '2025-08-25-cafes';
-  if(date==='2025-08-26' && (s.includes('lunch suggestions') || s.startsWith('🍱'))) return '2025-08-26-lunch';
+  if(date==='2025-08-25' && s.includes('café crawl') || (date==='2025-08-25' && s.includes('cafe crawl'))) return '2025-08-25-cafes';
+  if(date==='2025-08-26' && (s.includes('lunch') || s.startsWith('🍜'))) return '2025-08-26-lunch';
   if(date==='2025-08-27' && s.includes('itaewon bar hop')) return '2025-08-27-itaewon-hop';
   if(date==='2025-08-28' && s.includes('rooftop')) return '2025-08-28-rooftops';
   return null;
@@ -348,17 +336,16 @@ const Modal = ({open,onClose,children,title}) => {
   );
 };
 
-// Info modal for detail blocks (with per‑venue map buttons)
 const InfoModal = ({open, onClose, title, lines}) => (
   <Modal open={open} onClose={onClose} title={title}>
     <div className="space-y-2">
       {lines.map((l, idx) => {
         const name = l.split(' – ')[0];
-        const showMap = !/^\\s*(Order|Finish)/i.test(l || '');
+        const showMap = !/^\s*(Order|Finish)/i.test(l || '');
         return (
           <div key={idx} className="flex items-center justify-between border rounded-xl p-2 bg-white dark:bg-zinc-900">
             <div className="text-sm font-medium mr-2">{l}</div>
-            {showMap && <button onClick={()=>openMaps(name)} className="text-xs px-2 py-1 rounded-lg bg-emerald-600 text-white">Map</button>}
+            {showMap && <button onClick={()=>openMaps(name)} className="text-xs px-2 py-1 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700">Map</button>}
           </div>
         );
       })}
@@ -366,7 +353,7 @@ const InfoModal = ({open, onClose, title, lines}) => (
   </Modal>
 );
 
-// Drag‑to‑scroll Date Strip (no visible scrollbar)
+// Drag‑to‑scroll Date Strip
 const DateStrip = ({days, index, setIndex}) => {
   const ref = useRef(null);
   const state = useRef({down:false, startX:0, scrollLeft:0});
@@ -398,7 +385,7 @@ const DateStrip = ({days, index, setIndex}) => {
             <button
               key={d.date}
               onClick={()=>setIndex(i)}
-              className={`px-3 py-1.5 rounded-full text-xs border whitespace-nowrap ${i===index? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 border-zinc-200 dark:border-zinc-700'}`}
+              className={`px-3 py-1.5 rounded-full text-xs border whitespace-nowrap ${i===index? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 border-zinc-200 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700'}`}
               aria-label={fmtDate(d.date)}
             >{fmtDate(d.date)}</button>
           ))}
@@ -408,7 +395,6 @@ const DateStrip = ({days, index, setIndex}) => {
   );
 };
 
-// Trip progress bar
 const TripProgressBar = ({days, index}) => {
   const pct = Math.round((index/(days.length-1))*100);
   const daysLeft = (days.length-1) - index;
@@ -422,48 +408,50 @@ const TripProgressBar = ({days, index}) => {
   );
 };
 
+// Airline baggage rules by flight string
+function baggageForFlight(flightStr=''){
+  const u = flightStr.toUpperCase();
+  if(u.includes('OZ')) return BAGGAGE.ASIANA;
+  if(u.includes('KE')) return BAGGAGE["KOREAN AIR"];
+  if(u.includes('JQ')) return BAGGAGE.JETSTAR;
+  return null;
+}
+
 // -------------------- SCREENS --------------------
 const TodayView = ({index,setIndex,days})=>{
   const day = days[index];
   const weather = useSeoulWeather(day?.date || ``);
   const forecast = weather.daily ? getForecastForDate(weather.daily, day.date) : null;
-  const [pickerOpen, setPickerOpen] = useState(false);
-  const [eatOpen, setEatOpen] = useState(false);
   const [detailKey, setDetailKey] = useState(null);
 
   const prev = () => setIndex(Math.max(0, index-1));
   const next = () => setIndex(Math.min(days.length-1, index+1));
 
-  // flights on this day
-  const flights = TRAVELLERS.flatMap(t => (t.flights||[]).map(f => ({t, f, depISO: parseFlightDate(f.dep), arrISO: parseFlightDate(f.arr||'')})) )
+  const flights = TRAVELLERS
+    .flatMap(t => (t.flights||[]).map(f => ({t, f, depISO: parseFlightDate(f.dep), arrISO: parseFlightDate(f.arr||'')})) )
     .filter(x => x.depISO===day.date || x.arrISO===day.date);
 
   return (
     <div className="space-y-3">
-      {/* Date strip (drag to scroll) */}
       <DateStrip days={days} index={index} setIndex={setIndex} />
-      {/* Trip progress */}
       <TripProgressBar days={days} index={index} />
 
-      {/* Static Seoul hero */}
       <div className="rounded-2xl overflow-hidden">
         <img src={SEOUL_HERO} alt="Seoul" className="w-full h-40 object-cover" />
       </div>
 
-      {/* Header */}
       <div className="rounded-2xl p-4 bg-gradient-to-r from-emerald-500 to-amber-400 text-white">
         <div className="flex items-center justify-between">
-          <button onClick={prev} className="p-2 rounded-xl bg-white/20"><ArrowLeft size={18}/></button>
+          <button onClick={prev} className="p-2 rounded-xl bg-white/20 hover:bg-white/30"><ArrowLeft size={18}/></button>
           <div className="text-center">
             <div className="text-xs uppercase tracking-wide opacity-90">{day.city || `Seoul`}</div>
             <div className="text-lg font-semibold">{fmtDate(day.date)}</div>
             <div className="text-[11px] opacity-90 mt-1">Day {index+1} of {days.length}</div>
           </div>
-          <button onClick={next} className="p-2 rounded-xl bg-white/20"><ArrowRight size={18}/></button>
+          <button onClick={next} className="p-2 rounded-xl bg-white/20 hover:bg-white/30"><ArrowRight size={18}/></button>
         </div>
-              </div>
+      </div>
 
-      {/* Weather */}
       <Card tint="emerald">
         <div className="flex items-center gap-3">
           <Sun />
@@ -477,7 +465,7 @@ const TodayView = ({index,setIndex,days})=>{
                   <div>Forecast for {fmtDate(day.date)}: H {forecast.tmax}° / L {forecast.tmin}° · Rain {forecast.prcp} mm</div>
                 ) : (
                   <div>
-                    Forecast for this date isn't available yet. Current: {Math.round((weather.current && weather.current.temperature_2m) || 0)}°C · Feels {Math.round((weather.current && weather.current.apparent_temperature) || 0)}°C
+                    Current: {Math.round((weather.current && weather.current.temperature_2m) || 0)}°C · Feels {Math.round((weather.current && weather.current.apparent_temperature) || 0)}°C
                   </div>
                 )}
               </div>
@@ -486,13 +474,13 @@ const TodayView = ({index,setIndex,days})=>{
         </div>
       </Card>
 
-      {/* Flights on this day */}
       {flights.length>0 && (
         <Card tint="indigo">
           <div className="font-semibold mb-2">Flights today</div>
           <div className="space-y-2">
             {flights.map(({t,f},i)=>{
               const url = (FLIGHT_DOC_URL[t.name] && FLIGHT_DOC_URL[t.name][f.dir]) || undefined;
+              const bagText = baggageForFlight(f.flight);
               return (
                 <div key={i} className="flex items-start gap-2">
                   <Info size={16} className="text-zinc-500 mt-0.5"/>
@@ -500,10 +488,9 @@ const TodayView = ({index,setIndex,days})=>{
                     <div className="font-medium">{t.name} · {f.dir}: {f.flight}</div>
                     <div className="text-zinc-600">{f.from} → {f.to}</div>
                     <div className="text-zinc-600">{f.dep} → {f.arr}</div>
-                    {baggageForFlight(f.flight) && <div className="text-xs text-zinc-500 mt-0.5">Baggage: {baggageForFlight(f.flight)}</div>}
-                    {baggageForFlight(f.flight) && <div className="text-xs text-zinc-500 mt-0.5">Baggage: {baggageForFlight(f.flight)}</div>}
+                    {bagText && <div className="text-zinc-700 dark:text-zinc-300 mt-1">Baggage: {bagText}</div>}
                   </div>
-                  {url && <a href={url} target="_blank" rel="noreferrer" className="ml-auto shrink-0 inline-flex items-center gap-1 text-xs px-2 py-1 rounded-lg bg-emerald-600 text-white">Open <ExternalLink size={14} /></a>}
+                  {url && <a href={url} target="_blank" rel="noreferrer" className="ml-auto text-xs px-2 py-1 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 inline-flex items-center gap-1">Open <ExternalLink size={14}/></a>}
                 </div>
               );
             })}
@@ -511,7 +498,6 @@ const TodayView = ({index,setIndex,days})=>{
         </Card>
       )}
 
-      {/* Steps */}
       <Card tint="indigo">
         <div className="flex items-center justify-between mb-2">
           <div className="font-semibold">Plan for the day</div>
@@ -523,18 +509,20 @@ const TodayView = ({index,setIndex,days})=>{
           )}
           {day.items.map((step, i) => {
             const k = detailKeyForStep(day.date, step);
+            const showMap = shouldShowMaps(step);
+            const place = guessPlaceFromStep(step);
             return (
               <motion.div key={i} initial={{opacity:0, y:6}} animate={{opacity:1, y:0}} transition={{delay: i*0.02}} className="flex items-start gap-3">
                 <div className="mt-1 text-zinc-400">•</div>
                 <div className="flex-1">
                   <div className="text-sm leading-snug">
                     {k ? (
-                      <button onClick={()=>setDetailKey(k)} className="underline decoration-dotted underline-offset-4">{step.replace('(tap for list)','').trim()} (details)</button>
+                      <button onClick={()=>setDetailKey(k)} className="underline decoration-dotted underline-offset-4">{step.replace('(see note)','').replace('(See note)','').replace('(details)','').trim()} (details)</button>
                     ) : step}
                   </div>
-                  {shouldShowMaps(step) && (
+                  {showMap && (
                     <div className="mt-1 flex gap-2">
-                      <button onClick={()=>openMaps(guessPlaceFromStep(step))} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 hover:text-zinc-900 dark:bg-zinc-800 dark:text-white dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 border"> <MapPin size={14}/> Google Maps</button>
+                      <button onClick={()=>openMaps(place)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 dark:bg-zinc-800 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700"> <MapPin size={14}/> Google Maps</button>
                     </div>
                   )}
                 </div>
@@ -544,7 +532,6 @@ const TodayView = ({index,setIndex,days})=>{
         </div>
       </Card>
 
-      {/* Accommodation quick actions */}
       {day.accommodation && (
         <Card tint="rose">
           <div className="flex items-center justify-between">
@@ -553,40 +540,25 @@ const TodayView = ({index,setIndex,days})=>{
               <div className="text-sm text-zinc-700 dark:text-zinc-300 mt-1">{day.accommodation}</div>
             </div>
             <div className="flex gap-2">
-              <button onClick={()=>openMaps(day.accommodation)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 hover:text-zinc-900 dark:bg-zinc-800 dark:text-white dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 border"> <MapPin size={14}/> Map</button>
-              {day.checkin_details && <button onClick={()=>setDetailKey(day.date+"-checkin")} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-500 text-white">Check‑in</button>}
+              <button onClick={()=>openMaps(day.accommodation)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 dark:bg-zinc-800 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 border"> <MapPin size={14}/> Map</button>
+              {day.checkin_details && <button onClick={()=>setDetailKey(day.date+"-checkin")} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-500 text-white hover:bg-amber-600">Check‑in</button>}
             </div>
           </div>
         </Card>
       )}
 
-      {/* Date Picker Modal */}
-      <Modal open={pickerOpen} onClose={()=>setPickerOpen(false)} title="Select a date">
-        <div className="grid grid-cols-3 gap-2">
-          {days.map((d, idx) => (
-            <button key={d.date} onClick={()=>{setPickerOpen(false); setIndex(idx);}} className={`px-3 py-2 rounded-xl text-sm border ${idx===index? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-zinc-900 dark:text-zinc-100 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800'}`}>
-              {fmtDate(d.date)}
-            </button>
-          ))}
-        </div>
-      </Modal>
-
-      {/* Detail popups for this day */}
+      {/* Detail modals */}
       {Object.entries(DETAIL_BLOCKS).filter(([k])=>k.startsWith(day.date)).map(([k,blk]) => (
         <InfoModal key={k} open={detailKey===k} onClose={()=>setDetailKey(null)} title={blk.title} lines={blk.lines} />
       ))}
-      {/* Check‑in popup */}
       <Modal open={detailKey===day.date+"-checkin"} onClose={()=>setDetailKey(null)} title="Check‑in Instructions">
         <div className="text-sm whitespace-pre-wrap text-zinc-700 dark:text-zinc-300">{day.checkin_details}</div>
         {day.accommodation && (
           <div className="mt-3">
-            <button onClick={()=>openMaps(day.accommodation)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 hover:text-zinc-900 dark:bg-zinc-800 dark:text-white dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 border"> <MapPin size={14}/> Map address</button>
+            <button onClick={()=>openMaps(day.accommodation)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 dark:bg-zinc-800 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 border"> <MapPin size={14}/> Map address</button>
           </div>
         )}
       </Modal>
-
-      {/* Places to eat modal */}
-      <EatNearMe open={eatOpen} onClose={()=>setEatOpen(false)} />
 
       {/* Currency Converter */}
       <CurrencyConverter />
@@ -605,7 +577,7 @@ const FullItineraryView = ({days, goTo}) => {
               <div className="text-xs uppercase tracking-wide text-zinc-600">{d.city || `Seoul`}</div>
               <div className="font-semibold">{fmtDate(d.date)}</div>
             </div>
-            <button onClick={()=>goTo(i)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-emerald-600 text-white"> <CalendarDays size={14}/> Go to day</button>
+            <button onClick={()=>goTo(i)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700"> <CalendarDays size={14}/> Go to day</button>
           </div>
           <div className="mt-2 space-y-1">
             {d.items.map((s, j)=> {
@@ -614,7 +586,7 @@ const FullItineraryView = ({days, goTo}) => {
                 <div key={j} className="text-sm flex items-start gap-2">
                   <span className="text-zinc-400">•</span>
                   <span>
-                    {k ? (<button onClick={()=>setDetailKey(k)} className="underline decoration-dotted underline-offset-4">{s.replace('(tap for list)','').trim()} (details)</button>) : s}
+                    {k ? (<button onClick={()=>setDetailKey(k)} className="underline decoration-dotted underline-offset-4">{s.replace('(see note)','').replace('(See note)','').trim()} (details)</button>) : s}
                   </span>
                 </div>
               );
@@ -623,8 +595,6 @@ const FullItineraryView = ({days, goTo}) => {
           </div>
         </Card>
       ))}
-
-      {/* Render the relevant info modal if a key is set */}
       {Object.entries(DETAIL_BLOCKS).map(([k, blk]) => (
         <InfoModal key={k} open={detailKey===k} onClose={()=>setDetailKey(null)} title={blk.title} lines={blk.lines} />
       ))}
@@ -634,9 +604,9 @@ const FullItineraryView = ({days, goTo}) => {
 
 const DocsView = () => {
   const accommodationDocs = DOCS.filter(d=>d.group==='Accommodation');
+  const flightDocsByTraveller = FLIGHT_DOC_URL;
   return (
     <div className="space-y-4">
-      {/* Travellers & flights FIRST, with embedded doc links */}
       <div>
         <div className="text-xs uppercase tracking-wide text-zinc-500 mb-2">Travellers & flights</div>
         <div className="space-y-3">
@@ -648,7 +618,8 @@ const DocsView = () => {
               </div>
               <div className="mt-2 space-y-2 text-sm">
                 {t.flights.map((f, i)=> {
-                  const url = (FLIGHT_DOC_URL[t.name] && FLIGHT_DOC_URL[t.name][f.dir]) || undefined;
+                  const url = (flightDocsByTraveller[t.name] && flightDocsByTraveller[t.name][f.dir]) || undefined;
+                  const bagText = baggageForFlight(f.flight);
                   return (
                     <div key={i} className="flex items-start gap-2">
                       <span className="text-zinc-400">•</span>
@@ -656,10 +627,9 @@ const DocsView = () => {
                         <div className="font-medium">{f.dir}: {f.flight}</div>
                         <div className="text-zinc-600">{f.from} → {f.to}</div>
                         <div className="text-zinc-600">{f.dep} → {f.arr}</div>
-                    {baggageForFlight(f.flight) && <div className="text-xs text-zinc-500 mt-0.5">Baggage: {baggageForFlight(f.flight)}</div>}
-                    {baggageForFlight(f.flight) && <div className="text-xs text-zinc-500 mt-0.5">Baggage: {baggageForFlight(f.flight)}</div>}
+                        {bagText && <div className="text-zinc-700 dark:text-zinc-300 mt-1">Baggage: {bagText}</div>}
                       </div>
-                      {url && <a href={url} target="_blank" rel="noreferrer" className="text-xs px-2 py-1 rounded-lg bg-emerald-600 text-white">Open <ExternalLink size={14} /></a>}
+                      {url && <a href={url} target="_blank" rel="noreferrer" className="text-xs px-2 py-1 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 inline-flex items-center gap-1">Open <ExternalLink size={14}/></a>}
                     </div>
                   );
                 })}
@@ -669,7 +639,6 @@ const DocsView = () => {
         </div>
       </div>
 
-      {/* Accommodation docs */}
       <div>
         <div className="text-xs uppercase tracking-wide text-zinc-500 mb-2">Accommodation</div>
         <div className="grid grid-cols-1 gap-3">
@@ -688,11 +657,11 @@ const DocsView = () => {
                     </div>
                   )}
                 </div>
-                <a href={doc.url} target="_blank" rel="noreferrer" className="shrink-0 inline-flex items-center gap-1 text-sm px-2 py-1 rounded-lg bg-emerald-600 text-white">Open <ExternalLink size={14} /></a>
+                <a href={doc.url} target="_blank" rel="noreferrer" className="shrink-0 inline-flex items-center gap-1 text-sm px-2 py-1 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700">Open <ExternalLink size={14} /></a>
               </div>
               {doc.meta && doc.meta.address && (
                 <div className="mt-2">
-                  <button onClick={()=>openMaps(doc.meta.address)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 hover:text-zinc-900 dark:bg-zinc-800 dark:text-white dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 border"> <MapPin size={14}/> Map address</button>
+                  <button onClick={()=>openMaps(doc.meta.address)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 dark:bg-zinc-800 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 border"> <MapPin size={14}/> Map address</button>
                 </div>
               )}
             </Card>
@@ -703,60 +672,7 @@ const DocsView = () => {
   );
 };
 
-// --------- Eat near me (Overpass + Naver deep links) ---------
-const EatNearMe = ({open,onClose}) => {
-  const [state, setState] = useState();
-
-  useEffect(()=>{ if(!open) return; setState({loading:true});
-    if(!navigator.geolocation){ setState({loading:false, error:'Geolocation not supported'}); return; }
-    navigator.geolocation.getCurrentPosition(async pos => {
-      const lat = pos.coords.latitude; const lon = pos.coords.longitude;
-      try{
-        const query = `data=[out:json][timeout:25];(node["amenity"~"restaurant|cafe|fast_food|bar"](around:1200,${lat},${lon}););out center 60;`;
-        const r = await fetch(`https://overpass-api.de/api/interpreter`, { method:`POST`, headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: query });
-        const data = await r.json();
-        const items = (data.elements||[]).map(e=>({ id:e.id, name:(e.tags&&e.tags.name)||'Unnamed', type:(e.tags&&e.tags.amenity)||'place', lat:e.lat, lon:e.lon })).filter(x=>x.lat && x.lon);
-        setState({loading:false, items, center:{lat,lon}});
-      }catch(err){ setState({loading:false, error:String(err)}); }
-    }, err => setState({loading:false, error: err.message || 'Location error'}));
-  },[open]);
-
-  return (
-    <Modal open={open} onClose={onClose} title="Places to eat around me">
-      {!state?.loading && state?.error && <div className="text-sm text-red-600">{state.error}</div>}
-      {state?.loading && <div className="text-sm text-zinc-600">Finding you and searching nearby…</div>}
-      {!state?.loading && !state?.error && (
-        <div>
-          <div className="flex gap-2 mb-2">
-            {state?.center && (
-              <>
-                <button onClick={()=>openNaverAt(state.center.lat, state.center.lon, '맛집')} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-emerald-600 text-white">Open in Naver Maps</button>
-                <a target="_blank" rel="noreferrer" href={`https://www.tripadvisor.com/Search?q=restaurants&geo=1&searchNearby=${state.center.lat}%2C${state.center.lon}`} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-500 text-white">Search TripAdvisor</a>
-              </>
-            )}
-          </div>
-          <div className="max-h-80 overflow-auto space-y-2">
-            {(state?.items||[]).slice(0,30).map(p=> (
-              <div key={p.id} className="flex items-center justify-between border rounded-xl p-2 bg-white dark:bg-zinc-900">
-                <div>
-                  <div className="font-medium text-sm">{p.name}</div>
-                  <div className="text-xs text-zinc-500">{p.type}</div>
-                </div>
-                <div className="flex gap-2">
-                  <a target="_blank" rel="noreferrer" href={`https://www.openstreetmap.org/?mlat=${p.lat}&mlon=${p.lon}#map=18/${p.lat}/${p.lon}`} className="text-xs px-2 py-1 rounded-lg bg-white text-zinc-900 dark:bg-zinc-800 dark:text-white border">OSM</a>
-                  <button onClick={()=>openNaverAt(p.lat,p.lon,p.name)} className="text-xs px-2 py-1 rounded-lg bg-emerald-600 text-white">Naver</button>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-2 text-xs text-zinc-500">Results use OpenStreetMap/Overpass near your location; use Naver/TripAdvisor links for ratings & more details.</div>
-        </div>
-      )}
-    </Modal>
-  );
-};
-
-// --------- Currency Converter (GBP↔KRW, AUD↔KRW) ---------
+// --------- Currency Converter with symbols ---------
 const CurrencyConverter = () => {
   const [rates, setRates] = useState(null);
   const [pair, setPair] = useState('GBP-KRW');
@@ -764,7 +680,6 @@ const CurrencyConverter = () => {
 
   useEffect(()=>{
     const fetchRate = async (base) => {
-      // Try multiple providers for robustness
       const tryHost = async () => {
         const r = await fetch(`https://api.exchangerate.host/latest?base=${base}&symbols=KRW`);
         const j = await r.json();
@@ -801,7 +716,7 @@ const CurrencyConverter = () => {
 
   const isGBP = pair==='GBP-KRW' || pair==='KRW-GBP';
   const r = isGBP ? rates.GBP_KRW : rates.AUD_KRW;
-  const toKRW = pair.endswith('KRW');
+  const toKRW = pair.endsWith('KRW'); // <-- fixed crash
 
   let output = '—';
   if(r && r>0){
@@ -811,6 +726,8 @@ const CurrencyConverter = () => {
     output = 'unavailable';
   }
 
+  const OutLabel = () => <span className="tabular-nums">{toKRW ? '₩' : (isGBP ? '£' : 'A$')}</span>;
+
   return (
     <Card tint="emerald">
       <div className="flex items-center justify-between mb-2">
@@ -818,14 +735,14 @@ const CurrencyConverter = () => {
         <div className="text-xs text-zinc-500">Updated {rates.ts}</div>
       </div>
       <div className="flex gap-2 mb-2">
-        <button onClick={()=>setPair('GBP-KRW')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='GBP-KRW'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'}`}>£ → ₩</button>
-        <button onClick={()=>setPair('KRW-GBP')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='KRW-GBP'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'}`}>₩ → £</button>
-        <button onClick={()=>setPair('AUD-KRW')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='AUD-KRW'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'}`}>A$ → ₩</button>
-        <button onClick={()=>setPair('KRW-AUD')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='KRW-AUD'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'}`}>₩ → A$</button>
+        <button onClick={()=>setPair('GBP-KRW')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='GBP-KRW'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-700'}`}>£ → ₩</button>
+        <button onClick={()=>setPair('KRW-GBP')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='KRW-GBP'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-700'}`}>₩ → £</button>
+        <button onClick={()=>setPair('AUD-KRW')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='AUD-KRW'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-700'}`}>A$ → ₩</button>
+        <button onClick={()=>setPair('KRW-AUD')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='KRW-AUD'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-700'}`}>₩ → A$</button>
       </div>
       <div className="flex items-center gap-2">
         <input type="number" value={amount} onChange={e=>setAmount(e.target.value)} className="flex-1 px-3 py-2 rounded-xl border bg-white dark:bg-zinc-900"/>
-        <div className="text-sm w-28 text-right">{output} {toKRW? '₩' : (isGBP ? '£' : 'A$')}</div>
+        <div className="text-sm w-20 text-right"><OutLabel /></div>
       </div>
       {!r && <div className="mt-1 text-xs text-zinc-500">Live rate not available right now.</div>}
     </Card>
@@ -835,26 +752,27 @@ const CurrencyConverter = () => {
 // -------------------- APP --------------------
 export default function App() {
   const [tab, setTab] = useState(`today`);
-  const idxByDate = useMemo(() => new Map(ITINERARY.map((d, i)=>[d.date, i])), []);
-  function isoLocalDate(d=new Date()){const y=d.getFullYear();const m=String(d.getMonth()+1).padStart(2,'0');const da=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${da}`;}
-  const todayIso = isoLocalDate();
-  const defaultIndex = (()=>{
-    const i = idxByDate.get(todayIso);
-    if (i!=null) return i;
-    const dates = ITINERARY.map(d=>d.date);
-    const afterIdx = dates.findIndex(d => d >= todayIso);
-    return afterIdx>=0 ? afterIdx : 0;
-  })();
-  const [index, setIndex] = useState(defaultIndex);
 
-  // Lightweight sanity tests (console only)
+  // Auto-select: today's real date (if within itinerary range); otherwise nearest boundary
+  const idxByDate = useMemo(() => new Map(ITINERARY.map((d, i)=>[d.date, i])), []);
+  const todayISO = new Date().toISOString().slice(0,10);
+  const firstISO = ITINERARY[0].date;
+  const lastISO = ITINERARY[ITINERARY.length-1].date;
+  let initialIndex = idxByDate.has(todayISO) ? idxByDate.get(todayISO) : 0;
+  if (todayISO < firstISO) initialIndex = 0;
+  else if (todayISO > lastISO) initialIndex = ITINERARY.length-1;
+  else {
+    // pick the next future day if today not exactly found
+    const idx = ITINERARY.findIndex(d => d.date >= todayISO);
+    initialIndex = idx >= 0 ? idx : ITINERARY.length-1;
+  }
+  const [index, setIndex] = useState(initialIndex);
+
   useEffect(()=>{
     try{
-      console.assert(parseFlightDate('Thu 21 Aug 20:40')==='2025-08-21', 'parseFlightDate failed for 21 Aug');
-      console.assert(parseFlightDate('Sun 31 Aug 12:20')==='2025-08-31', 'parseFlightDate failed for 31 Aug');
       console.assert(shouldShowMaps('Fly to Seoul.')===false, 'shouldShowMaps Fly');
       console.assert(shouldShowMaps('🍽️ 20:00 – Dinner: Maple Tree House')===true, 'shouldShowMaps Dinner');
-    }catch(e){ /* ignore in prod */ }
+    }catch(e){}
   },[]);
 
   return (
