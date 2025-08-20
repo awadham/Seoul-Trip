@@ -38,36 +38,38 @@ We also have a door lock to enter the accommodation, so we will give you the pas
 > Check out: 11 a.m.
 > Check-in: 3 p.m. (15:00)`,
     items: [
-      `✈️ 17:30 – Land Incheon → taxi to Hongdae Airbnb.`,
-      `🏠 19:00 – Check in, freshen up.`,
-      `🍽️ 20:00 – Dinner: Hongdae K‑BBQ (Maple Tree House / Yeontabal / Palsaek Samgyeopsal).`,
-      `🍻 22:30 – Hongdae Bar Hop (tap for list).`
-    ]
+    `✈️ 17:30 – Land Incheon → taxi to Hongdae Airbnb (~$75-$100 split, ~1 hr).`,
+    `🥩 19:30 – K-BBQ Dinner at Saemaeul Sikdang.`,
+    `🍻 21:00 – Bar hop: see note`,
+    `🎤 23:00–02:00 – Karaoke (coin noraebang) OR Club NB2 (hip hop, always packed).`
+  ]
   },
   { date: `2025-08-23`, city: `Hongdae`, accommodation: ``, checkin_details: ``, items: [
-    `🍳 12:00 – Recovery brunch: Eggslut or local brunch spot.`,
-    `🛍️ 14:00 – Stroll Hongdae/Yeonnam (shopping & coffee).`,
-    `🍖 18:30 – K‑BBQ + Soju.`,
-    `🍸 21:30 – Hongdae bar crawl – 3 bars + 1 club + 4 drinks.`,
+    `🍳 12:00 – Recovery brunch: Eggslut (greasy fix) or Thanks, Oat (lighter).`,
+    `🚲 15:00 – Han River Chill Sesh @ Yeouido Hangang Park: - Rent bikes, lay mats, order fried chicken delivery to the river. - Optional: Hangang River Cruise (~$22, 1 hr, sunset option).`,
+    `🌶️ 18:30 – Dinner: Chicken JangIn Dakgalbi (spicy stir-fried chicken w/ cheese).`,
+    `🍻 20:30–02:00 – Hongdae Pub Crawl (Mike’s Cabin, pre-book). Includes 3 bars + 1 club + 4 drinks.`,
     `🎶 02:00+ – Karaoke or Club Vera.`
   ]},
   { date: `2025-08-24`, city: `Hongdae`, accommodation: ``, checkin_details: ``, items: [
-    `🥟 12:00 – Gwangjang Market – bindaetteok, mayak gimbap, yukhoe.`,
-    `💆 15:30–18:00 – Skincare @ Forena Clinic (2–2.5 hrs).`,
-    `🍺 18:30 – Craft beer crawl: Magpie → The Booth.`,
-    `🍢 20:00 – Dinner: Pojangmacha tents – street food + soju.`
+    `🥟 12:00 – Gwangjang Market – must-try: bindaetteok 🥞, mayak gimbap 🍙, yukhoe 🥩.`,
+    `💆 15:30–18:00 – Skincare @ Forena Clinic (2–2.5 hrs). Glow-up day ✨.`,
+    `🍺 18:30 – Craft beer crawl: Magpie Brewing Co. → The Booth.`,
+    `🍢 20:00 – Dinner: Pojangmacha tents – street food + soju 🍶.`
   ]},
   { date: `2025-08-25`, city: `Hongdae`, accommodation: ``, checkin_details: ``, items: [
-    `☕ 12:00 – CAFE CRAWL (tap for list).`,
-    `🛍️ Afternoon – light shopping & rest.`,
-    `🍽️ 19:00 – Dinner near Hongdae.`
+    `🍡 11:00 – Myeongdong Street Food Alley (skewers, hotteok pancakes).`,
+    `🥟 13:00 – Optional market stop (Namdaemun or Gwangjang if you loved it).`,
+    `☕ 15:00 – Yeonnam-dong café crawl ☕🎨 (hipster neighbourhood) - see note.`,
+    `🍸 17:30 – Rooftop pre-dinner drinks: The Griffin Bar (JW Marriott) ✨.`,
+    `🥓 19:30 – Dinner: Hanam Pig House (legendary pork belly BBQ).`,
+    `🍹 21:30–00:00 – Cocktails @ Alice Cheongdam (hidden speakeasy).`
   ]},
   { date: `2025-08-26`, city: `Hongdae`, accommodation: ``, checkin_details: ``, items: [
-    `🏞️ 10:00 – Namsan & N‑Seoul Tower (views).`,
-    `🏘️ 12:30 – Insadong & Bukchon Hanok Village walk (photos).`,
-    `🍱 – LUNCH SUGGESTIONS (tap for list).`,
-    `🍲 18:30 – Dinner: Ttukbaegi restaurant (hot pots).`,
-    `🍶 21:00 – Makgeolli bar night.`
+    `🏰 11:00–16:00 – Gyeongbokgung Palace → Bukchon Hanok Village → Insadong tea house.`,
+    `🍜 12:30 – Lunch: Tosokchon Samgyetang 🥣 or Gogung (Insadong branch) 🍚 or Tongin Market 🍱 or Yetchatjip (Bukchon Hanok Village) 🍖`,
+    `🥩 18:30 – Dinner: Yeontabal BBQ (premium beef). See note`,
+    `🍻 20:30–01:00 – Hongdae blowout: Thursday Party → karaoke 🎤 → Club Vera.`
   ]},
   { date: `2025-08-27`, city: `Itaewon`, accommodation: `[3‑minute walk from Itaewon Station] stay KANU (up to 8 people/3RM/2BR)`, checkin_details: `Check‑in: 15:00\nCheck‑out: 10:00`, items: [
     `🧳 10:00 – Pack up Hongdae, coffees to go.`,
@@ -78,24 +80,39 @@ We also have a door lock to enter the accommodation, so we will give you the pas
   ]},
   { date: `2025-08-28`, city: `Itaewon`, accommodation: ``, checkin_details: ``, items: [
     `🚖 11:00 – Taxi to Gangnam (~25 min).`,
-    `🛍️ 13:30 – COEX Mall + Starfield Library (photos).`,
-    `🌇 17:30 – Rooftop Crawl (tap for list).`,
-    `🕺 22:30 – Club night (Gangnam).`
+    `🍽️ 12:00 – Michelin Lunch @ Soul (booked).`,
+    `🛍️ 14:30 – COEX Mall + Starfield Library (photos).`,
+    `🍸 17:00 – Rooftop crawl: Privilege Bar (Mondrian) → Le Chamber - see note.`,
+    `🌮 20:00 – Dinner: Vatos Urban Tacos.`,
+    `🎧 22:30–03:00 – Club Octagon (Gangnam): - $33.37 entry (incl. 1 drink). - VIP tables: from $612.00 (6 ppl, 2 bottles). - Dress smart, no sportswear/flip flops.`,
+    `🚖 Taxi back to Itaewon (~$20).`
   ]},
   { date: `2025-08-29`, city: `Itaewon`, accommodation: ``, checkin_details: ``, items: [
     `🍝 11:00 – Brunch: Pasta Market Itaewon.`,
-    `🛍️ Day – shopping in Itaewon + Hannam.`,
-    `🍖 18:30 – Dinner: Itaewon KBBQ (popular spot).`,
-    `🎧 22:00 – Club Made / Cake Shop night.`
+    `🛍️ Day – rest, shop, chill.`,
+    `🍗 19:00 – Dinner: Chicken in the Kitchen (elite fried chicken).`,
+    `🍻 21:00–02:00 – Itaewon Pub Crawl (pre-book).`,
+    `🎶 02:00+ – Club Made (big EDM/hip hop) or Cake Shop (underground techno).`
   ]},
   { date: `2025-08-30`, city: `Itaewon`, accommodation: ``, checkin_details: ``, items: [
-    `🛍️ Day – last shopping & coffee crawl.`,
-    `🌇 17:00 – Sunset spot (Eungbongsan / Haneul Park).`,
-    `🍖 19:00 – Final KBBQ: Hanam Pig / Saemaeul / Jinmi Sikdang / Hanokjib.`,
-    `🍸 21:00–01:00 – Casual bar hop, final karaoke.`
+    `🛍️ Day – last shopping & coffee crawl ☕.`,
+    `🌇 17:00 – Farewell rooftop: Kloud @ InterContinental OR revisit Griffin.`,
+    `🥩 19:30 – Dinner: Hanokjib BBQ.`,
+    `🍸 21:00–01:00 – Casual bar hop, final karaoke 🎤.`
   ]},
-  { date: `2025-08-31`, city: ``, accommodation: ``, checkin_details: ``, items: [`Fly home.`] },
-  { date: `2025-09-01`, city: ``, accommodation: ``, checkin_details: ``, items: [] },
+  { date: `2025-08-31`, city: ``, accommodation: ``, checkin_details: ``, items: [
+    `🍳 12:00 – Recovery brunch: Eggslut (greasy fix) or Thanks, Oat (lighter).`,
+    `🚲 15:00 – Han River Chill Sesh @ Yeouido Hangang Park: - Rent bikes, lay mats, order fried chicken delivery to the river. - Optional: Hangang River Cruise (~$22, 1 hr, sunset option).`,
+    `🌶️ 18:30 – Dinner: Chicken JangIn Dakgalbi (spicy stir-fried chicken w/ cheese).`,
+    `🍻 20:30–02:00 – Hongdae Pub Crawl (Mike’s Cabin, pre-book). Includes 3 bars + 1 club + 4 drinks.`,
+    `🎶 02:00+ – Karaoke or Club Vera.`
+  ] },
+  { date: `2025-09-01`, city: ``, accommodation: ``, checkin_details: ``, items: [
+    `🥟 12:00 – Gwangjang Market – must-try: bindaetteok 🥞, mayak gimbap 🍙, yukhoe 🥩.`,
+    `💆 15:30–18:00 – Skincare @ Forena Clinic (2–2.5 hrs). Glow-up day ✨.`,
+    `🍺 18:30 – Craft beer crawl: Magpie Brewing Co. → The Booth.`,
+    `🍢 20:00 – Dinner: Pojangmacha tents – street food + soju 🍶.`
+  ] },
 ];
 
 const DETAIL_BLOCKS = {
@@ -168,7 +185,7 @@ const TRAVELLERS = [
     { dir: `Return`, flight: `Asiana OZ521`, from: `ICN T1`, to: `LHR T2`, dep: `Sun 31 Aug 12:20`, arr: `Sun 31 Aug 18:50`, bag: `1PC` },
   ]},
   { name: `Nuwie G`, origin: `Brisbane (early)`, avatar: `https://iili.io/Fy3BFCN.png`, flights: [
-    { dir: `Outbound`, flight: `Jetstar JQ53`, from: `BNE`, to: `ICN T1`, dep: `Thu 21 Aug 11:10`, arr: `Thu 21 Aug 19:50` },
+    { dir: `Outbound`, flight: `Jetstar JQ53`, from: `BNE`, to: `ICN T1`, dep: `Sat 23 Aug 11:10`, arr: `Sat 23 Aug 19:50` },
     { dir: `Return`, flight: `Jetstar JQ48`, from: `ICN T1`, to: `SYD`, dep: `Mon 1 Sep 21:50`, arr: `Tue 2 Sep 09:05` },
   ]},
   { name: `Hari`, origin: `Sydney`, avatar: `https://iili.io/Fy3fyzl.png`, flights: [
@@ -203,6 +220,21 @@ const FLIGHT_DOC_URL = {
   'Nuwie G': { Outbound: DOCS.find(d=>d.key==='nuwie_out')?.url, Return: DOCS.find(d=>d.key==='nuwie_ret')?.url },
 };
 
+
+// Baggage allowances per airline
+const AIRLINE_BAGGAGE = {
+  'Asiana': '23kg checked + 10kg carry-on (55×20×40cm) + personal item (40×30×20cm)',
+  'Korean Air': '20kg checked + 10kg carry-on (55×20×40cm) + personal item (40×30×15cm)',
+  'Jetstar': '30kg checked + 14kg carry-on',
+};
+function baggageForFlight(flightStr){
+  if(!flightStr) return null;
+  const words = flightStr.split(/\s+/);
+  const two = words.slice(0,2).join(' ');
+  if (AIRLINE_BAGGAGE[two]) return AIRLINE_BAGGAGE[two];
+  const one = words[0];
+  return AIRLINE_BAGGAGE[one] || null;
+}
 // -------------------- HELPERS --------------------
 const SEOUL = { name: `Seoul`, lat: 37.5665, lon: 126.9780, tz: `Asia/Seoul` };
 const SEOUL_HERO = 'https://iili.io/Fy3UKFa.jpg';
@@ -252,9 +284,14 @@ function guessPlaceFromStep(step) {
 }
 
 function shouldShowMaps(step){
-  const s = step.trim().toLowerCase();
+  const s = (step||'').trim().toLowerCase();
   if(s.startsWith('fly ') || s.includes('fly home') || s.includes('fly to seoul')) return false;
-  return true;
+  const generic = ['check in','freshen','pack up','rest','shop','chill','free','bar hop','crawl','karaoke','club','explore','recovery','blowout'];
+  if (generic.some(g => s.includes(g))) return false;
+  const after = guessPlaceFromStep(step).toLowerCase();
+  if (!after) return false;
+  if (generic.some(g => after.includes(g))) return false;
+  return /[a-z]/i.test(after);
 }
 
 function parseFlightDate(str){
@@ -424,11 +461,7 @@ const TodayView = ({index,setIndex,days})=>{
           </div>
           <button onClick={next} className="p-2 rounded-xl bg-white/20"><ArrowRight size={18}/></button>
         </div>
-        <div className="mt-3 flex items-center gap-2">
-          <button onClick={()=>setPickerOpen(true)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white/20"> <CalendarDays size={14}/> Pick a date</button>
-          <button onClick={()=>setEatOpen(true)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white/20"> <Utensils size={14}/> Show me places to eat around me</button>
-        </div>
-      </div>
+              </div>
 
       {/* Weather */}
       <Card tint="emerald">
@@ -466,9 +499,11 @@ const TodayView = ({index,setIndex,days})=>{
                   <div className="text-sm">
                     <div className="font-medium">{t.name} · {f.dir}: {f.flight}</div>
                     <div className="text-zinc-600">{f.from} → {f.to}</div>
-                    <div className="text-zinc-600">{f.dep} → {f.arr} {f.bag?`· ${f.bag}`:''}</div>
+                    <div className="text-zinc-600">{f.dep} → {f.arr}</div>
+                    {baggageForFlight(f.flight) && <div className="text-xs text-zinc-500 mt-0.5">Baggage: {baggageForFlight(f.flight)}</div>}
+                    {baggageForFlight(f.flight) && <div className="text-xs text-zinc-500 mt-0.5">Baggage: {baggageForFlight(f.flight)}</div>}
                   </div>
-                  {url && <a href={url} target="_blank" rel="noreferrer" className="ml-auto text-xs px-2 py-1 rounded-lg bg-emerald-600 text-white">Open doc</a>}
+                  {url && <a href={url} target="_blank" rel="noreferrer" className="ml-auto shrink-0 inline-flex items-center gap-1 text-xs px-2 py-1 rounded-lg bg-emerald-600 text-white">Open <ExternalLink size={14} /></a>}
                 </div>
               );
             })}
@@ -499,7 +534,7 @@ const TodayView = ({index,setIndex,days})=>{
                   </div>
                   {shouldShowMaps(step) && (
                     <div className="mt-1 flex gap-2">
-                      <button onClick={()=>openMaps(guessPlaceFromStep(step))} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 dark:bg-zinc-800 dark:text-white hover:bg-zinc-100 border"> <MapPin size={14}/> Google Maps</button>
+                      <button onClick={()=>openMaps(guessPlaceFromStep(step))} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 hover:text-zinc-900 dark:bg-zinc-800 dark:text-white dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 border"> <MapPin size={14}/> Google Maps</button>
                     </div>
                   )}
                 </div>
@@ -518,7 +553,7 @@ const TodayView = ({index,setIndex,days})=>{
               <div className="text-sm text-zinc-700 dark:text-zinc-300 mt-1">{day.accommodation}</div>
             </div>
             <div className="flex gap-2">
-              <button onClick={()=>openMaps(day.accommodation)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 dark:bg-zinc-800 dark:text-white hover:bg-zinc-100 border"> <MapPin size={14}/> Map</button>
+              <button onClick={()=>openMaps(day.accommodation)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 hover:text-zinc-900 dark:bg-zinc-800 dark:text-white dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 border"> <MapPin size={14}/> Map</button>
               {day.checkin_details && <button onClick={()=>setDetailKey(day.date+"-checkin")} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-500 text-white">Check‑in</button>}
             </div>
           </div>
@@ -545,7 +580,7 @@ const TodayView = ({index,setIndex,days})=>{
         <div className="text-sm whitespace-pre-wrap text-zinc-700 dark:text-zinc-300">{day.checkin_details}</div>
         {day.accommodation && (
           <div className="mt-3">
-            <button onClick={()=>openMaps(day.accommodation)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 dark:bg-zinc-800 dark:text-white hover:bg-zinc-100 border"> <MapPin size={14}/> Map address</button>
+            <button onClick={()=>openMaps(day.accommodation)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 hover:text-zinc-900 dark:bg-zinc-800 dark:text-white dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 border"> <MapPin size={14}/> Map address</button>
           </div>
         )}
       </Modal>
@@ -620,9 +655,11 @@ const DocsView = () => {
                       <div className="flex-1">
                         <div className="font-medium">{f.dir}: {f.flight}</div>
                         <div className="text-zinc-600">{f.from} → {f.to}</div>
-                        <div className="text-zinc-600">{f.dep} → {f.arr} {f.bag?`· ${f.bag}`:''}</div>
+                        <div className="text-zinc-600">{f.dep} → {f.arr}</div>
+                    {baggageForFlight(f.flight) && <div className="text-xs text-zinc-500 mt-0.5">Baggage: {baggageForFlight(f.flight)}</div>}
+                    {baggageForFlight(f.flight) && <div className="text-xs text-zinc-500 mt-0.5">Baggage: {baggageForFlight(f.flight)}</div>}
                       </div>
-                      {url && <a href={url} target="_blank" rel="noreferrer" className="text-xs px-2 py-1 rounded-lg bg-emerald-600 text-white">Open doc</a>}
+                      {url && <a href={url} target="_blank" rel="noreferrer" className="text-xs px-2 py-1 rounded-lg bg-emerald-600 text-white">Open <ExternalLink size={14} /></a>}
                     </div>
                   );
                 })}
@@ -655,7 +692,7 @@ const DocsView = () => {
               </div>
               {doc.meta && doc.meta.address && (
                 <div className="mt-2">
-                  <button onClick={()=>openMaps(doc.meta.address)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 dark:bg-zinc-800 dark:text-white hover:bg-zinc-100 border"> <MapPin size={14}/> Map address</button>
+                  <button onClick={()=>openMaps(doc.meta.address)} className="text-xs inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white text-zinc-900 hover:text-zinc-900 dark:bg-zinc-800 dark:text-white dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 border"> <MapPin size={14}/> Map address</button>
                 </div>
               )}
             </Card>
@@ -764,7 +801,7 @@ const CurrencyConverter = () => {
 
   const isGBP = pair==='GBP-KRW' || pair==='KRW-GBP';
   const r = isGBP ? rates.GBP_KRW : rates.AUD_KRW;
-  const toKRW = pair.endsWith('KRW');
+  const toKRW = pair.endswith('KRW');
 
   let output = '—';
   if(r && r>0){
@@ -781,14 +818,14 @@ const CurrencyConverter = () => {
         <div className="text-xs text-zinc-500">Updated {rates.ts}</div>
       </div>
       <div className="flex gap-2 mb-2">
-        <button onClick={()=>setPair('GBP-KRW')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='GBP-KRW'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'}`}>GBP → KRW</button>
-        <button onClick={()=>setPair('KRW-GBP')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='KRW-GBP'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'}`}>KRW → GBP</button>
-        <button onClick={()=>setPair('AUD-KRW')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='AUD-KRW'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'}`}>AUD → KRW</button>
-        <button onClick={()=>setPair('KRW-AUD')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='KRW-AUD'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'}`}>KRW → AUD</button>
+        <button onClick={()=>setPair('GBP-KRW')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='GBP-KRW'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'}`}>£ → ₩</button>
+        <button onClick={()=>setPair('KRW-GBP')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='KRW-GBP'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'}`}>₩ → £</button>
+        <button onClick={()=>setPair('AUD-KRW')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='AUD-KRW'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'}`}>A$ → ₩</button>
+        <button onClick={()=>setPair('KRW-AUD')} className={`text-xs px-2 py-1 rounded-lg border ${pair==='KRW-AUD'?'bg-emerald-600 text-white border-emerald-600':'bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'}`}>₩ → A$</button>
       </div>
       <div className="flex items-center gap-2">
         <input type="number" value={amount} onChange={e=>setAmount(e.target.value)} className="flex-1 px-3 py-2 rounded-xl border bg-white dark:bg-zinc-900"/>
-        <div className="text-sm w-28 text-right">{output} {toKRW? 'KRW' : (isGBP ? 'GBP' : 'AUD')}</div>
+        <div className="text-sm w-28 text-right">{output} {toKRW? '₩' : (isGBP ? '£' : 'A$')}</div>
       </div>
       {!r && <div className="mt-1 text-xs text-zinc-500">Live rate not available right now.</div>}
     </Card>
@@ -799,8 +836,16 @@ const CurrencyConverter = () => {
 export default function App() {
   const [tab, setTab] = useState(`today`);
   const idxByDate = useMemo(() => new Map(ITINERARY.map((d, i)=>[d.date, i])), []);
-  const todayIso = ITINERARY[0]?.date || new Date().toISOString().slice(0,10);
-  const [index, setIndex] = useState(() => idxByDate.get(todayIso) ?? 0);
+  function isoLocalDate(d=new Date()){const y=d.getFullYear();const m=String(d.getMonth()+1).padStart(2,'0');const da=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${da}`;}
+  const todayIso = isoLocalDate();
+  const defaultIndex = (()=>{
+    const i = idxByDate.get(todayIso);
+    if (i!=null) return i;
+    const dates = ITINERARY.map(d=>d.date);
+    const afterIdx = dates.findIndex(d => d >= todayIso);
+    return afterIdx>=0 ? afterIdx : 0;
+  })();
+  const [index, setIndex] = useState(defaultIndex);
 
   // Lightweight sanity tests (console only)
   useEffect(()=>{
