@@ -764,7 +764,7 @@ const CurrencyConverter = () => {
 
   const isGBP = pair==='GBP-KRW' || pair==='KRW-GBP';
   const r = isGBP ? rates.GBP_KRW : rates.AUD_KRW;
-  const toKRW = pair.endswith('KRW');
+  const toKRW = pair.endsWith('KRW');
 
   let output = '—';
   if(r && r>0){
