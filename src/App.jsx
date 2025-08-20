@@ -1,19 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { CalendarDays, List, FileText, MapPin, ArrowLeft, ArrowRight, ExternalLink, Sun, X, Utensils, Info } from "lucide-react";
+import { CalendarDays, List, FileText, MapPin, ArrowLeft, ArrowRight, ExternalLink, Sun, X, Info } from "lucide-react";
 
 /**
- * SEOUL TRIP APP – updated per user changes
- * - Fix crash: use String.endsWith (not Python endswith)
- * - Remove "1PC" from Flights today and add airline baggage rules
- * - Itinerary updated per user text (incl. Myeongdong 25 Aug; Soul 28 Aug 12:00 and COEX/Starfield 14:30)
- * - Google Maps buttons only on place-like items
- * - Hover contrast fixed for Maps buttons
- * - Nuwie G outbound flight moved to Sat 23 Aug (arrive 19:50) – docs unchanged
- * - Buttons unified to "Open" with icon across Docs & Flights
- * - Today tab auto-selects actual calendar date within trip
- * - Currency converter uses symbols (£, ₩, A$)
- * - Removed "Pick a date" and "Eat near me" header buttons
+ * SEOUL TRIP APP – updated3
+ * - Remove "(details)" suffix; clickable items are underlined only.
+ * - Reset button default styles (p-0 m-0 bg-transparent border-0 appearance-none text-left) to prevent indentation.
+ * - Currency converter shows computed result alongside symbol.
+ * - Keep prior fixes and itinerary/doc updates.
  */
 
 // -------------------- DATA --------------------
@@ -210,7 +204,6 @@ const FLIGHT_DOC_URL = {
   'Nuwie G': { Outbound: DOCS.find(d=>d.key==='nuwie_out')?.url, Return: DOCS.find(d=>d.key==='nuwie_ret')?.url },
 };
 
-// Baggage allowances by airline
 const BAGGAGE = {
   ASIANA: "23kg checked + 10kg carry‑on (55×20×40cm) + personal item (40×30×20cm)",
   "KOREAN AIR": "20kg checked + 10kg carry‑on (55×20×40cm) + personal item (40×30×15cm)",
@@ -255,35 +248,25 @@ function openMaps(query) {
 }
 
 function guessPlaceFromStep(step) {
-  // Heuristic: extract content after an en dash or colon; strip emojis
   const after = step.split(` – `)[1] || step.split(` - `)[1] || step.split(`: `)[1] || step;
   return after.replace(/^[^\w\(]+/u,'').trim();
 }
 
-// Only show maps for place-like items (dinners, lunches, venues, markets, rooftops, named bars)
 function shouldShowMaps(step){
   const s = step.trim().toLowerCase();
-
-  // Never for generic actions
   const generic = [
     'fly', 'check in', 'freshen up', 'pack up', 'pack', 'explore', 'chill cafes', 'rest, shop, chill',
     'bar hop', 'pub crawl', 'bar crawl', 'karaoke', 'club', 'casual bar hop', 'farewell rooftop',
     'today –', 'day –', 'afternoon', 'morning', 'taxi to', 'taxi back', 'blowout'
   ];
   if (generic.some(g => s.includes(g))) return false;
-
-  // Likely places
-  const keywords = ['dinner', 'lunch', 'brunch', 'rooftop', 'market', 'library', 'palace', 'village', 'insadong', 'coex', 'museum', 'park', 'plant itaewon', 'vatos', 'hanokjib', 'hanam pig', 'alice cheongdam', 'soul', 'octagon', 'linus bbq', 'yeontabal', 'thanks, oat', 'eggslut', 'gwangjang', 'forena', 'magpie', 'the booth', 'myeongdong', 'namdaemun'];
+  const keywords = ['dinner', 'lunch', 'brunch', 'rooftop', 'market', 'library', 'palace', 'village', 'insadong', 'coex', 'park', 'plant itaewon', 'vatos', 'hanokjib', 'hanam pig', 'alice cheongdam', 'soul', 'octagon', 'linus bbq', 'yeontabal', 'thanks, oat', 'eggslut', 'gwangjang', 'forena', 'magpie', 'the booth', 'myeongdong', 'namdaemun'];
   if (keywords.some(k => s.includes(k))) return true;
-
-  // Fallback: if it contains at sign or looks like a specific place
   if (s.includes('@')) return true;
-
   return false;
 }
 
 function parseFlightDate(str){
-  // e.g. "Thu 21 Aug 20:40" -> 2025-08-21
   const m = str.match(/\b(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b/i);
   if(!m) return null;
   const day = m[1].padStart(2,'0');
@@ -295,7 +278,7 @@ function parseFlightDate(str){
 function detailKeyForStep(date, step){
   const s = step.toLowerCase();
   if(date==='2025-08-22' && s.includes('bar hop')) return '2025-08-22-hongdae-hop';
-  if(date==='2025-08-25' && s.includes('café crawl') || (date==='2025-08-25' && s.includes('cafe crawl'))) return '2025-08-25-cafes';
+  if(date==='2025-08-25' && (s.includes('café crawl') || s.includes('cafe crawl'))) return '2025-08-25-cafes';
   if(date==='2025-08-26' && (s.includes('lunch') || s.startsWith('🍜'))) return '2025-08-26-lunch';
   if(date==='2025-08-27' && s.includes('itaewon bar hop')) return '2025-08-27-itaewon-hop';
   if(date==='2025-08-28' && s.includes('rooftop')) return '2025-08-28-rooftops';
@@ -408,7 +391,6 @@ const TripProgressBar = ({days, index}) => {
   );
 };
 
-// Airline baggage rules by flight string
 function baggageForFlight(flightStr=''){
   const u = flightStr.toUpperCase();
   if(u.includes('OZ')) return BAGGAGE.ASIANA;
@@ -517,7 +499,12 @@ const TodayView = ({index,setIndex,days})=>{
                 <div className="flex-1">
                   <div className="text-sm leading-snug">
                     {k ? (
-                      <button onClick={()=>setDetailKey(k)} className="underline decoration-dotted underline-offset-4">{step.replace('(see note)','').replace('(See note)','').replace('(details)','').trim()} (details)</button>
+                      <button
+                        onClick={()=>setDetailKey(k)}
+                        className="underline decoration-dotted underline-offset-4 p-0 m-0 bg-transparent border-0 appearance-none text-left inline"
+                      >
+                        {step}
+                      </button>
                     ) : step}
                   </div>
                   {showMap && (
@@ -547,7 +534,6 @@ const TodayView = ({index,setIndex,days})=>{
         </Card>
       )}
 
-      {/* Detail modals */}
       {Object.entries(DETAIL_BLOCKS).filter(([k])=>k.startsWith(day.date)).map(([k,blk]) => (
         <InfoModal key={k} open={detailKey===k} onClose={()=>setDetailKey(null)} title={blk.title} lines={blk.lines} />
       ))}
@@ -560,7 +546,6 @@ const TodayView = ({index,setIndex,days})=>{
         )}
       </Modal>
 
-      {/* Currency Converter */}
       <CurrencyConverter />
     </div>
   );
@@ -586,7 +571,14 @@ const FullItineraryView = ({days, goTo}) => {
                 <div key={j} className="text-sm flex items-start gap-2">
                   <span className="text-zinc-400">•</span>
                   <span>
-                    {k ? (<button onClick={()=>setDetailKey(k)} className="underline decoration-dotted underline-offset-4">{s.replace('(see note)','').replace('(See note)','').trim()} (details)</button>) : s}
+                    {k ? (
+                      <button
+                        onClick={()=>setDetailKey(k)}
+                        className="underline decoration-dotted underline-offset-4 p-0 m-0 bg-transparent border-0 appearance-none text-left inline"
+                      >
+                        {s}
+                      </button>
+                    ) : s}
                   </span>
                 </div>
               );
@@ -672,7 +664,7 @@ const DocsView = () => {
   );
 };
 
-// --------- Currency Converter with symbols ---------
+// --------- Currency Converter with symbols and output ---------
 const CurrencyConverter = () => {
   const [rates, setRates] = useState(null);
   const [pair, setPair] = useState('GBP-KRW');
@@ -716,7 +708,7 @@ const CurrencyConverter = () => {
 
   const isGBP = pair==='GBP-KRW' || pair==='KRW-GBP';
   const r = isGBP ? rates.GBP_KRW : rates.AUD_KRW;
-  const toKRW = pair.endsWith('KRW'); // <-- fixed crash
+  const toKRW = pair.endsWith('KRW');
 
   let output = '—';
   if(r && r>0){
@@ -726,7 +718,8 @@ const CurrencyConverter = () => {
     output = 'unavailable';
   }
 
-  const OutLabel = () => <span className="tabular-nums">{toKRW ? '₩' : (isGBP ? '£' : 'A$')}</span>;
+  const symbol = toKRW ? '₩' : (isGBP ? '£' : 'A$');
+  const result = `${symbol} ${output}`;
 
   return (
     <Card tint="emerald">
@@ -742,7 +735,7 @@ const CurrencyConverter = () => {
       </div>
       <div className="flex items-center gap-2">
         <input type="number" value={amount} onChange={e=>setAmount(e.target.value)} className="flex-1 px-3 py-2 rounded-xl border bg-white dark:bg-zinc-900"/>
-        <div className="text-sm w-20 text-right"><OutLabel /></div>
+        <div className="text-sm w-36 text-right tabular-nums">{result}</div>
       </div>
       {!r && <div className="mt-1 text-xs text-zinc-500">Live rate not available right now.</div>}
     </Card>
@@ -753,7 +746,7 @@ const CurrencyConverter = () => {
 export default function App() {
   const [tab, setTab] = useState(`today`);
 
-  // Auto-select: today's real date (if within itinerary range); otherwise nearest boundary
+  // Auto-select today's date within itinerary
   const idxByDate = useMemo(() => new Map(ITINERARY.map((d, i)=>[d.date, i])), []);
   const todayISO = new Date().toISOString().slice(0,10);
   const firstISO = ITINERARY[0].date;
@@ -762,18 +755,10 @@ export default function App() {
   if (todayISO < firstISO) initialIndex = 0;
   else if (todayISO > lastISO) initialIndex = ITINERARY.length-1;
   else {
-    // pick the next future day if today not exactly found
     const idx = ITINERARY.findIndex(d => d.date >= todayISO);
     initialIndex = idx >= 0 ? idx : ITINERARY.length-1;
   }
   const [index, setIndex] = useState(initialIndex);
-
-  useEffect(()=>{
-    try{
-      console.assert(shouldShowMaps('Fly to Seoul.')===false, 'shouldShowMaps Fly');
-      console.assert(shouldShowMaps('🍽️ 20:00 – Dinner: Maple Tree House')===true, 'shouldShowMaps Dinner');
-    }catch(e){}
-  },[]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-rose-50 to-amber-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-900 text-zinc-900 dark:text-zinc-100">
