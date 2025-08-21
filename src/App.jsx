@@ -212,7 +212,7 @@ const BAGGAGE = {
 
 // -------------------- HELPERS --------------------
 const SEOUL = { name: `Seoul`, lat: 37.5665, lon: 126.9780, tz: `Asia/Seoul` };
-const SEOUL_HERO = 'https://iili.io/Fy3UKFa.jpg';
+const SEOUL_HERO = 'https://iili.io/FyZBDga.png';
 
 function useSeoulWeather(selectedISO) {
   const [state, setState] = useState({loading:true});
